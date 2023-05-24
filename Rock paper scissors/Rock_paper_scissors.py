@@ -1,66 +1,65 @@
-from random import randint
+import random
 
-#Create a list of play to the computer
-t = ["rock", "paper", "scissors"]
+print("Winning rules of the game ROCK PAPER SCISSORS are:")
+print("Rock vs Paper -> Paper wins")
+print("Rock vs Scissors -> Rock wins")
+print("Paper vs Scissors -> Scissors wins\n")
 
-#Assign a random play to the computer
+while True:
+    print("Enter your choice:\n1 - Rock\n2 - Paper\n3 - Scissors")
+    choice = int(input("Your choice: "))
 
-computer = t[randint(0,2)]
+    while choice > 3 or choice < 1:
+        choice = int(input("Please enter a valid choice (1-3): "))
 
-#Set player to false
-player = False
-
-#This asks the player if that want to play again
-
-
-while player == False:
-    #Set player to true
-    player = input("rock, paper, or scissor ")
-    if player == computer:
-        print("TIE! Go again")
-    elif player == "rock":
-        if computer == "Paper":
-            print("YOU LOSE....", computer, "Covers", player)
-            
-        elif computer == "Rock":
-            print("TIE! Go again")
-        else:
-            print("YOU WIN!!!", player, "Smashes", computer)
-            
-
-
-    elif player == "paper":
-        if computer == "scissor":
-            print("YOU LOSE..", computer, "Cuts", player)
-            
-        elif computer == "paper":
-            print("TIE! Go again")
-
-        else:
-            print("YOU WIN!!", player, "Covers", computer)
-            
-
-
-    elif player == "scissor":
-        if computer == "rock":
-            print("YOU LOSE.", computer, "Smashes", player)
-           
-
-        elif computer == "scissor":
-            print("TIE! Go again")
-        else:
-            print("YOU WIN!!", player, "Cuts", computer)
-            
-
-
+    if choice == 1:
+        choice_name = 'Rock'
+    elif choice == 2:
+        choice_name = 'Paper'
     else:
-        print("NOT A VALID PLAY PLEASE CHECK SPELLING")
-        #player was set to true make it false so the loop can continue
-    player = False
-    computer = t[randint(0,2)]
+        choice_name = "Scissors"
 
-  
+    print("You chose:", choice_name)
+    print("Now it's the computer's turn...")
 
-    if input == 'n':
+    comp_choice = random.randint(1, 3)
+
+    while comp_choice == choice:
+        comp_choice = random.randint(1, 3)
+
+    if comp_choice == 1:
+        comp_choice_name = 'rock'
+    elif comp_choice == 2:
+        comp_choice_name = 'paper'
+    else:
+        comp_choice_name = 'scissors'
+
+    print("The computer chose:", comp_choice_name)
+
+    if choice == comp_choice:
+        print("It's a tie!\n")
+        result = "DRAW"
+    elif (choice == 1 and comp_choice == 2) or (choice == 2 and comp_choice == 1):
+        print("Paper wins!\n")
+        result = "Paper"
+    elif (choice == 1 and comp_choice == 3) or (choice == 3 and comp_choice == 1):
+        print("Rock wins!\n")
+        result = "Rock"
+    else:
+        print("Scissors wins!\n")
+        result = "Scissors"
+
+    if result == 'DRAW':
+        print("It's a tie!")
+    elif result == choice_name:
+        print("You win!")
+    else:
+        print("The computer wins!")
+
+    print("Do you want to play again? (Enter 'Y' to play again, 'N' to quit)")
+    play_again = input().lower()
+
+    if play_again != 'y':
         break
 
+print("Thanks for playing!")
